@@ -30,8 +30,8 @@ const Tab1 = () => {
       <ProfileHeader />
       <View style={styles.container}>
         <PersonFeed />
-        <PersonFeed />
-        <PersonFeed />
+        {/* <PersonFeed />
+        <PersonFeed /> */}
       </View>
     </ScrollView>
   )
