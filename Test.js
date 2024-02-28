@@ -21,6 +21,7 @@ const delays = (milliseconds) =>{
   })
 }
 
+const data = await de
 
 
 

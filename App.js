@@ -1,68 +1,77 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button } from 'react-native';
-import Module from './Module';
+import { StyleSheet, Text, View, Button, ScrollView } from 'react-native';
 import PersonFeed from './PersonFeed';
-
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Tab2 from './Tab2';
 
 const CastType = () => {
   return (
     <View style={styles.box}>
-      <View></View>
-    </View>
-  )
-}
-
-const MusicInfo = () =>{
-  return(
-    <View style={{flexDirection:"row", alignItems:"center", marginBottom:8}}>
-      <View  style={{width:75, aspectRatio:1, marginRight:10, backgroundColor:"steelblue", borderRadius:10}}></View>
-      <View>
-        <Text style={{fontWeight:600, fontSize:17.5, color:"white"}}>Kill Bill</Text>
-        <Text style={{fontWeight:300, color:"white"}}>SZA!</Text>
+      <View >
+        <View></View>
       </View>
     </View>
   )
 }
-
-const Screen = () =>{
-  const songs = []
-
-  for(var i=0;i<5;i++){
-    songs.push(<MusicInfo/>)
-  }
-  return(
-    <View style={{backgroundColor:"black", padding: 10, borderRadius:10}}>
-      {songs}
+   
+const ProfileHeader = () => {
+  return (
+    <View style={{height:200}} >
+      <View style={styles.coverPhoto}></View>
+      <View style={{width:100, height:100, backgroundColor:"pink", top:-50, left:20, borderRadius:20}}></View>
     </View>
   )
 }
 
-export default function App() {
-
+const Tab1 = () => {
   return (
-    <View style={styles.container}>
-   
-      <PersonFeed/>
-      <PersonFeed/>
+    <ScrollView >
+      <ProfileHeader />
+      <View style={styles.container}>
+        <PersonFeed />
+        <PersonFeed />
+        <PersonFeed />
+      </View>
+    </ScrollView>
+  )
+}
 
-      {/* <Module/> */}
+const Tabs = createBottomTabNavigator()
 
-     
-    </View>
+const MyTabs = () => {
+  return (
+    <Tabs.Navigator>
+      <Tabs.Screen name="Tab1" component={Tab1} />
+      <Tabs.Screen name="Tab2" component={Tab2} />
+    </Tabs.Navigator>
+  )
+}
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <MyTabs />
+    </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    padding:15,
-    backgroundColor:"pink",
-    backgroundColor:"#f0f2f5",
-    flex:1
+    padding: 15,
+    backgroundColor: "pink",
+    backgroundColor: "#f0f2f5",
+    flex: 1
   },
-  box:{
-    height:150,
-    backgroundColor:"#D9D9D9",
+  box: {
+    height: 150,
+    backgroundColor: "#D9D9D9",
     // margin:10
+  },
+  coverPhoto: {
+    height: 150,
+    backgroundColor: "red",
+    justifyContent: "flex-end",
+    overflow: "visible"
   }
 });
-
