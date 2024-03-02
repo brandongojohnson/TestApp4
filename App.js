@@ -3,55 +3,43 @@ import { StyleSheet, Text, View, Button, ScrollView } from 'react-native';
 import PersonFeed from './PersonFeed';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 import Tab2 from './Tab2';
-
-const CastType = () => {
-  return (
-    <View style={styles.box}>
-      <View >
-        <View></View>
-      </View>
-    </View>
-  )
-}
-   
-const ProfileHeader = () => {
-  return (
-    <View style={{height:200}} >
-      <View style={styles.coverPhoto}></View>
-      <View style={{width:100, height:100, backgroundColor:"pink", top:-50, left:20, borderRadius:20}}></View>
-    </View>
-  )
-}
-
-const Tab1 = () => {
-  return (
-    <ScrollView >
-      <ProfileHeader />
-      <View style={styles.container}>
-        <PersonFeed />
-        {/* <PersonFeed />
-        <PersonFeed /> */}
-      </View>
-    </ScrollView>
-  )
-}
+import Tab1 from './Tab1';
 
 const Tabs = createBottomTabNavigator()
+const Stack = createStackNavigator()
+
+const Home = ({navigation}) =>{
+  return(
+    <View>
+      <Button title="Click on Me" onPress={()=>navigation.navigate("Main")}/>
+    </View>
+  )
+}
 
 const MyTabs = () => {
   return (
     <Tabs.Navigator>
-      <Tabs.Screen name="Tab1" component={Tab1} />
-      <Tabs.Screen name="Tab2" component={Tab2} />
+      <Tabs.Screen options={{headerShown: false}} name="Tab1" component={Tab1} />
+      <Tabs.Screen  options={{headerShown: false}} name="Tab2" component={Tab2} />
     </Tabs.Navigator>
+  )
+}
+const testBool = true
+const MyStack = () =>{
+  return(
+    <Stack.Navigator>
+      {testBool? <Stack.Screen name="Home" component={Home}/> : null}
+      <Stack.Screen name="Main" component={MyTabs}/>
+    </Stack.Navigator>
   )
 }
 
 export default function App() {
   return (
     <NavigationContainer>
-      <MyTabs />
+      <MyStack />
     </NavigationContainer>
   );
 }
@@ -70,8 +58,9 @@ const styles = StyleSheet.create({
   },
   coverPhoto: {
     height: 150,
-    backgroundColor: "red",
+    backgroundColor: "#9E2A2B",
     justifyContent: "flex-end",
     overflow: "visible"
   }
 });
+

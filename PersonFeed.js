@@ -47,14 +47,13 @@ const styles = StyleSheet.create({
             height:10
         },
         shadowRadius:20,
-        shadowOpacity: .2,
+        shadowOpacity: .08,
         marginBottom:20
     },
     picsContainer: {
         flexDirection: "row",
         flexWrap: "wrap",
         padding:5
-        
     },
     box: {
         flexBasis: "calc(33.33% - 12px)",
@@ -62,7 +61,6 @@ const styles = StyleSheet.create({
         backgroundColor: "#D9D9D9",
         borderRadius:20,
         margin: 6,
-
     },
     profilePic:{
         width: 75,
