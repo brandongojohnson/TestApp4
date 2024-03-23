@@ -3,6 +3,9 @@ import { View, TextInput, Animated, StyleSheet, Text, Pressable, Button } from '
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { db } from "./firebase"
+import { ref, set } from "firebase/database";
+
 
 //Default -> Log in 
 //Email
@@ -17,22 +20,23 @@ const Stack = createStackNavigator();
 
 const AuthenticationStack = () => {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="SignUp" component={SignUp} />
+    <Stack.Navigator style={{ width: "80%" }}>
+      <Stack.Screen options={{ headerShown: false }} name="Login" component={LogInPage} initialParams={{ testValue: "pizza" }} />
+      <Stack.Screen options={{ headerShown: false }} name="SignUp" component={SignUpPage} />
     </Stack.Navigator>
   )
 }
 
-const Submit = ({ email, password }) => {
-  return (
-    <Pressable onPress={() => Authenticate(email, password)} style={{ backgroundColor: "black", borderRadius: 10, marginTop: 10 }}>
-      <Text style={{ fontWeight: 600, fontSize: 18, textAlign: "center", color: "white", padding: 18 }}>Submit</Text>
-    </Pressable>
-  )
+function newUserInfo(userId, firstName, lastName, userName, email, password) {
+  set(ref(db, 'users2/' + userId), {
+    firstname: firstName,
+    lastname: lastName,
+    username: userName,
+    email: email
+  });
 }
 
-const Authenticate = (email, password) => {
+const createUser = (firstName, lastName, userName, email, password) => {
 
   const auth = getAuth();
 
@@ -40,6 +44,9 @@ const Authenticate = (email, password) => {
     .then((userCredential) => {
       // Signed up 
       const user = userCredential.user;
+      const uid = auth.currentUser.uid
+      newUserInfo(uid, firstName, lastName, userName, email, password)
+      console.log(newUser.uid)
       // ...
     })
     .catch((error) => {
@@ -48,55 +55,74 @@ const Authenticate = (email, password) => {
       // ..
     });
 }
-const Login = (setEmail, setPassword ) => {
-  return (
-    <View>
-      <TextInput placeholder="Email" style={styles.textInput} onChangeText={(e) => setEmail(e)} />
-      <TextInput placeholder="Password" style={styles.textInput} onChangeText={(e) => setPassword(e)} />
-    </View>
-  )
-}
 
-const SignUp = ({ setFirstName, setLastName, setUserName, setEmail, setPassword }) => {
 
-  return (
-    <View>
-      <Text style={{ textAlign: "center", fontWeight: 600, fontSize: 30, marginBottom: 40 }}>Sign Up</Text>
 
-      <View style={{ flexDirection: "row" }}>
-        <TextInput placeholder="First Name" style={[styles.textInput, { width: "50%" }]} onChangeText={(e) => setFirstName(e)} />
-        <TextInput placeholder="Last Name" style={[styles.textInput, { width: "50%" }]} onChangeText={(e) => setLastName(e)} />
-      </View>
+const SignUpPage = () => {
 
-      <TextInput placeholder="User Name" style={styles.textInput} onChangeText={(e) => setUserName(e)} />
-      <Login/> 
-    </View>
-  )
-}
-
-const Tab2 = () => {
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [userName, setUserName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
+  const clear = () => {
+    setFirstName("")
+    setLastName("")
+    setFirstName("")
+    setUserName("")
+    setEmail("")
+    setPassword("")
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.form}>
-        <SignUp
-          setFirstName={setFirstName}
-          setLastName={setLastName}
-          setUserName={setUserName}
-          setEmail={setEmail}
-          setPassword={setPassword}
-        />
-        <Submit email={email} password={password} />
+        <Text style={{ textAlign: "center", fontWeight: 600, fontSize: 30, marginBottom: 40 }}>Sign Up</Text>
 
+        <View style={{ flexDirection: "row" }}>
+          <TextInput placeholder="First Name" style={[styles.textInput, { width: "50%" }]} onChangeText={(e) => setFirstName(e)} value={firstName} />
+          <TextInput placeholder="Last Name" style={[styles.textInput, { width: "50%" }]} onChangeText={(e) => setLastName(e)} value={lastName} />
+        </View>
+
+        <TextInput placeholder="User Name" style={styles.textInput} onChangeText={(e) => setUserName(e)} value={userName} />
+
+        <TextInput placeholder="Email" style={styles.textInput} onChangeText={(e) => setEmail(e)} value={email} />
+        <TextInput placeholder="Password" style={styles.textInput} onChangeText={(e) => setPassword(e)} value={password} />
+
+        <Pressable onPress={() => {createUser(firstName, lastName, userName, email, password); clear()}} style={{ backgroundColor: "black", borderRadius: 10, marginTop: 10 }}>
+          <Text style={{ fontWeight: 600, fontSize: 18, textAlign: "center", color: "white", padding: 18 }}>Submit</Text>
+        </Pressable>
       </View>
     </View>
   )
 }
+
+const LogInPage = ({ navigation, route }) => {
+  const { testValue } = route.params
+  return (
+    <View style={styles.container}>
+      <View style={styles.form}>
+        <Text style={{ textAlign: "center", fontWeight: 600, fontSize: 30, marginBottom: 40 }}>Log in</Text>
+        <View>
+          <TextInput placeholder="Email" style={styles.textInput} onChangeText={(e) => setEmail(e)} />
+          <TextInput placeholder="Password" style={styles.textInput} onChangeText={(e) => setPassword(e)} />
+        </View>
+        <Pressable onPress={() => navigation.navigate("SignUp")}>
+          <Text style={{ color: "blue", fontWeight: 700, textAlign: "center" }}>Link to Sign Up</Text>
+        </Pressable>
+      </View>
+    </View>
+  )
+}
+
+// const Submit = ({ email, password, firstName, LastName, userName }) => {
+//   return (
+//     <Pressable onPress={() => userSignUp(email, password)} style={{ backgroundColor: "black", borderRadius: 10, marginTop: 10 }}>
+//       <Text style={{ fontWeight: 600, fontSize: 18, textAlign: "center", color: "white", padding: 18 }}>Submit</Text>
+//     </Pressable>
+//   )
+// }
 
 const styles = StyleSheet.create({
   textInput: {
@@ -117,5 +143,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Tab2
-
+export default AuthenticationStack

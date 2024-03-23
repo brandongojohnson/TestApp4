@@ -4,7 +4,7 @@ import PersonFeed from './PersonFeed';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-import Tab2 from './Tab2';
+import AuthenticationStack from './Tab2';
 import Tab1 from './Tab1';
 import { Test2 } from './Test';
 import { useEffect, useState } from 'react';
@@ -36,7 +36,7 @@ export default function App() {
     return (
       <Tabs.Navigator>
         <Tabs.Screen options={{ headerShown: false }} name="Tab1" component={Tab1} />
-        <Tabs.Screen options={{ headerShown: false }} name="Tab3" component={Tab2} />
+        <Tabs.Screen options={{ headerShown: false }} name="Tab3" component={AuthenticationStack} />
       </Tabs.Navigator>
     )
   }

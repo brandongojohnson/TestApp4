@@ -26,7 +26,7 @@ const PictureGrid = () => {
 
     for (var i = 0; i < 6; i++) {
         pics.push(
-            <View style={styles.box}></View>
+            <View key = {i} style={styles.box}></View>
         )
     }
     return (
