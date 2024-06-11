@@ -6,6 +6,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import AuthenticationStack from './AuthenticationStack';
 import { useEffect, useState } from 'react';
+import SignUp from './SignUp';
 
 const OnBoard = () => {
     const Stack = createStackNavigator()
@@ -25,7 +26,7 @@ const OnBoard = () => {
                         <Text style={[styles.buttonText, { color: "white" }]}> Login </Text>
                     </Pressable>
 
-                    <Pressable style={styles.button} onPress={() => navigation.navigate(Signup)}>
+                    <Pressable style={styles.button} onPress={() => navigation.navigate(SignUp)}>
                         <Text style={styles.buttonText}> Create Account</Text>
                     </Pressable>
                 </View>
@@ -50,7 +51,7 @@ const OnBoard = () => {
             <Stack.Navigator>
                 <Stack.Screen options={{ headerShown: false }} name="First Screen" component={FirstScreen} />
                 <Stack.Screen name="Login" component={Login} />
-                <Stack.Screen name="Signup" component={Signup} />
+                <Stack.Screen name="SignUp" component={SignUp} />
             </Stack.Navigator>
         )
     }
