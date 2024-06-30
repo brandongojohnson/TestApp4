@@ -7,41 +7,11 @@ import { createStackNavigator } from '@react-navigation/stack';
 import AuthenticationStack from './AuthenticationStack';
 import { useEffect, useState } from 'react';
 import OnBoard from './OnBoard';
+import Login from './Login';
 
 export default function App() {
 
   const Stack = createStackNavigator()
-
-  const FirstScreen = ({navigation}) =>{
-    return(
-      <View>
-        <Button title="Login" onPress={()=>navigation.navigate(Login)}/>
-        <Button title="Signup" onPress={()=>navigation.navigate(Signup)}/>
-      </View>
-    )
-  }
-
-  const Login = () =>{
-    return(
-      <Text>This is the Login</Text>
-    )
-  }
-
-  const Signup = () =>{
-    return(
-      <Text>This is the Signup</Text>
-    )
-  }
-
-  const MyStack = () =>{
-    return(
-      <Stack.Navigator>
-        <Stack.Screen name= "First Screen" component = {FirstScreen}/>
-        <Stack.Screen name= "Login" component = {Login}/>
-        <Stack.Screen name= "Signup" component = {Signup}/>
-      </Stack.Navigator>
-    )
-  }
 
   return (
     <NavigationContainer>

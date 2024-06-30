@@ -9,17 +9,7 @@ import { styles } from './OnBoard';
 // import { Icon } from 'react-native-elements'
 
 
-const socialConnect = () => {
-    return (
-        <View>
-            <View></View>
-            <View></View>
-            <View></View>
-        </View>
-    )
-}
-
-const SignUp = ({ navigation }) => {
+const Authentication = ({ navigation, type }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -27,7 +17,7 @@ const SignUp = ({ navigation }) => {
         <View style={[styles.container, { backgroundColor: "white" }]}>
             <View style={{ width: "100%" }}>
 
-                <Text style={styleForm.heading}>Sign Up</Text>
+                <Text style={styleForm.heading}>Sign Up!</Text>
 
                 <View>
                     <Text>Email</Text>
@@ -37,10 +27,16 @@ const SignUp = ({ navigation }) => {
                     <Text>Password</Text>
                     <TextInput style={styleForm.field} placeholderTextColor="rgba(0,0,0,.5)" placeholder="name@example.com" onChangeText={(e) => setPassword(e)} />
                 </View>
-                <View>
-                    <Text>Confirm Password</Text>
-                    <TextInput style={styleForm.field} placeholderTextColor="rgba(0,0,0,.5)" placeholder="name@example.com" onChangeText={(e) => setPasswordConfirm} />
-                </View>
+
+                {
+                    type == "signup" ?
+                        <View>
+                            <Text>Confirm Password</Text>
+                            <TextInput style={styleForm.field} placeholderTextColor="rgba(0,0,0,.5)" placeholder="name@example.com" onChangeText={(e) => setPasswordConfirm} />
+                        </View>
+                        : null
+                }
+
 
                 <Pressable
                     style={[styles.button, { backgroundColor: "black", marginBottom: 14, borderColor: "black" }]}
@@ -48,7 +44,7 @@ const SignUp = ({ navigation }) => {
                 >
                     <Text style={[styles.buttonText, { color: "white" }]}>Login</Text>
                 </Pressable>
-                
+
 
 
             </View>
@@ -57,7 +53,7 @@ const SignUp = ({ navigation }) => {
 }
 
 
-export default SignUp;
+export default Authentication;
 
 export const styleForm = StyleSheet.create({
     heading: {

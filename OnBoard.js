@@ -7,6 +7,11 @@ import { createStackNavigator } from '@react-navigation/stack';
 import AuthenticationStack from './AuthenticationStack';
 import { useEffect, useState } from 'react';
 import SignUp from './SignUp';
+import Login from './Login';
+import Authentication from './Authentication';
+import { Icon } from '@rneui/themed';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import MyTopTab from './MyTopTab';
 
 const OnBoard = () => {
     const Stack = createStackNavigator()
@@ -14,8 +19,8 @@ const OnBoard = () => {
     const FirstScreen = ({ navigation }) => {
         return (
             <View style={styles.container}>
-                <View style={{alignItems:"center"}}>
-                    <View style={styles.logo} />
+                <View style={{ alignItems: "center" }}>
+                    <Pressable style={styles.logo} onPress={()=>navigation.navigate("Main")}/>
 
                     <View>
                         <Text style={{ fontWeight: 800, fontSize: 32, textAlign: "center", marginBottom: 11 }}> Explore the App</Text>
@@ -34,22 +39,11 @@ const OnBoard = () => {
         )
     }
 
-    const Login = () => {
-        return (
-            <Text>This is the Login</Text>
-        )
-    }
-
-    const Signup = () => {
-        return (
-            <Text>This is the Signup</Text>
-        )
-    }
-
     const MyStack = () => {
         return (
             <Stack.Navigator>
                 <Stack.Screen options={{ headerShown: false }} name="First Screen" component={FirstScreen} />
+                <Stack.Screen name="Main" component={MyTopTab} />
                 <Stack.Screen name="Login" component={Login} />
                 <Stack.Screen name="SignUp" component={SignUp} />
             </Stack.Navigator>
@@ -61,12 +55,12 @@ const OnBoard = () => {
     );
 }
 
- export const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
     container: {
         padding: 20,
         alignItems: "center",
-        flex:1,
-        justifyContent:"space-around"
+        flex: 1,
+        justifyContent: "space-around"
     },
     logo: {
         width: 283,
@@ -87,10 +81,7 @@ const OnBoard = () => {
         textAlign: "center",
         fontSize: 16,
         fontWeight: 600,
-
     }
-
-
 })
 
 export default OnBoard
