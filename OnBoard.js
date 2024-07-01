@@ -12,6 +12,7 @@ import Authentication from './Authentication';
 import { Icon } from '@rneui/themed';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import MyTopTab from './MyTopTab';
+import MyBottomTab from './MyBottomTab';
 
 const OnBoard = () => {
     const Stack = createStackNavigator()
@@ -43,7 +44,7 @@ const OnBoard = () => {
         return (
             <Stack.Navigator>
                 <Stack.Screen options={{ headerShown: false }} name="First Screen" component={FirstScreen} />
-                <Stack.Screen name="Main" component={MyTopTab} />
+                <Stack.Screen options={{ headerShown: false }} name="Main" component={MyBottomTab} />
                 <Stack.Screen name="Login" component={Login} />
                 <Stack.Screen name="SignUp" component={SignUp} />
             </Stack.Navigator>
