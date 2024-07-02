@@ -1,11 +1,19 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { Icon } from '@rneui/themed';
 
 const Element = () => {
     return (
         <View style={{ width: "100%", marginTop: 10, height: 300, backgroundColor: "#BA76FF", borderRadius: 25, padding: 5 }}>
-            <View style={{ borderRadius: 20, backgroundColor: "white", width: "100%", height: 160 }}></View>
+
+            <View style={{ borderRadius: 20, backgroundColor: "white", width: "100%", height: 160 }}>
+                <Icon
+                    name='sc-telegram'
+                    type='evilicon'
+                    color='#517fa4'
+                />
+            </View>
         </View>
     );
 };
@@ -39,7 +47,7 @@ const TopTab = createMaterialTopTabNavigator();
 const MyTopTab = () => {
     return (
         <View style={styles.container}>
-            <View style={{height:50, backgroundColor:"white"}}></View>
+            <View style={{ height: 50, backgroundColor: "white" }}></View>
             <TopTab.Navigator
                 screenOptions={{
                     tabBarIndicatorStyle: {
@@ -47,20 +55,20 @@ const MyTopTab = () => {
                         width: 5,
                         borderRadius: 5,
                         backgroundColor: 'black',
-                        bottom: 0, 
+                        bottom: 0,
                         marginHorizontal: "calc(16%)",
                         marginBottom: 4
                     },
                     tabBarLabelStyle: {
                         fontSize: 12,
-                        fontWeight:600
+                        fontWeight: 600
                     },
                     tabBarStyle: {
                         backgroundColor: 'white',
-                        borderBottomWidth: 0, 
-                        elevation: 0, 
-                        shadowOffset: { width: 0, height: 0 }, 
-                        shadowOpacity: 0, 
+                        borderBottomWidth: 0,
+                        elevation: 0,
+                        shadowOffset: { width: 0, height: 0 },
+                        shadowOpacity: 0,
                     },
                 }}
             >
