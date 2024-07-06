@@ -5,14 +5,18 @@ import { Icon } from '@rneui/themed';
 
 const Element = () => {
     return (
-        <View style={{ width: "100%", marginTop: 10, height: 300, backgroundColor: "#BA76FF", borderRadius: 25, padding: 5 }}>
+        <View style={{ width: "100%", marginTop: 10, backgroundColor: "#AA3177", borderRadius: 25, padding: 5 }}>
 
-            <View style={{ borderRadius: 20, backgroundColor: "white", width: "100%", height: 160 }}>
-                <Icon
+            <View style={{ borderRadius: 20, backgroundColor: "white", width: "100%", height: 183 }}>
+                {/* <Icon
                     name='sc-telegram'
                     type='evilicon'
                     color='#517fa4'
-                />
+                /> */}
+            </View>
+            <View style={{width:"80%", }}>
+                <Text style={{ marginLeft: 16, marginTop: 15, color: "white", fontSize: 20, fontWeight: 700 }}>Card Title</Text>
+                <Text style={{ marginLeft: 16, marginTop: 15, color: "white", fontSize: 15, lineHeight: 20, marginBottom:41, fontWeight:200}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer adipiscing elit. Intege</Text>
             </View>
         </View>
     );
@@ -47,7 +51,9 @@ const TopTab = createMaterialTopTabNavigator();
 const MyTopTab = () => {
     return (
         <View style={styles.container}>
-            <View style={{ height: 50, backgroundColor: "white" }}></View>
+            <View style={{ height: 50, backgroundColor: "white", justifyContent:"flex-end"}}>
+                <View style={{width:"75%", height:35, backgroundColor:"red", marginHorizontal:"auto", borderRadius:50}}></View>
+            </View>
             <TopTab.Navigator
                 screenOptions={{
                     tabBarIndicatorStyle: {
