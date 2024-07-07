@@ -22,18 +22,55 @@ const Element = () => {
     );
 };
 
+const Test = () =>{
+    return(
+        <View style={{backgroundColor:"white", width:320, borderRadius: 20, marginHorizontal:"auto", marginTop:25, shadowColor:"black", shadowRadius:20, shadowOpacity:.1, overflow:"hidden"}}>
+            <View style={{margin:16, flexDirection: "row"}}>
+                <View style={{width:40, height:40, backgroundColor:"#F2C14E", borderRadius:100, marginRight:12}}></View>
+                <View>
+                    <Text style={{fontSize:17, fontWeight:600, marginBottom:2}}>Jerome shared event</Text>
+                    <Text style={{color:"#9597A1", fontWeight:400, fontSize:12}}>12 April 2019 at 10:47 AM</Text>
+                </View>
+            </View>
+            <View style={{height:300, backgroundColor:"#fe2565"}}></View>
+            <View></View>
+            <View></View>
+            <View></View>
+        </View>
+    )
+}
+
+const Test2 = () =>{
+    return(
+        <View style={{backgroundColor:"white", width:320, borderRadius: 20, marginHorizontal:"auto", marginTop:25, shadowColor:"black", shadowRadius:20, shadowOpacity:.1, overflow:"hidden"}}>
+            
+            <View style={{height:300, backgroundColor:"#fe2565"}}></View>
+            <View style={{margin:16, flexDirection: "row"}}>
+                <View style={{width:40, height:40, backgroundColor:"#F2C14E", borderRadius:100, marginRight:12}}></View>
+                <View>
+                    <Text style={{fontSize:17, fontWeight:600, marginBottom:2}}>Jerome shared event</Text>
+                    <Text style={{color:"#9597A1", fontWeight:400, fontSize:12}}>12 April 2019 at 10:47 AM</Text>
+                </View>
+            </View>
+            <View></View>
+            <View></View>
+            <View></View>
+        </View>
+    )
+}
+
 const Screen1 = () => {
     return (
-        <View style={{ paddingHorizontal: 13 }}>
-            <Element />
+        <View style={{ paddingHorizontal: 13, backgroundColor:"#eff2f9" }}>
+            <Test/>
         </View>
     );
 };
 
 const Screen2 = () => {
     return (
-        <View style={styles.screen}>
-            <Text>Screen2</Text>
+        <View style={{ paddingHorizontal: 13, backgroundColor:"#eff2f9" }}>
+            <Test2/>
         </View>
     );
 };
@@ -51,8 +88,8 @@ const TopTab = createMaterialTopTabNavigator();
 const MyTopTab = () => {
     return (
         <View style={styles.container}>
-            <View style={{ height: 50, backgroundColor: "white", justifyContent:"flex-end"}}>
-                <View style={{width:"75%", height:35, backgroundColor:"red", marginHorizontal:"auto", borderRadius:50}}></View>
+            <View style={{backgroundColor: "white", justifyContent:"flex-end"}}>
+                <View style={{width:"80%", height:35, backgroundColor:"#e9eef0", marginHorizontal:"auto", borderRadius:50, marginVertical:15}}></View>
             </View>
             <TopTab.Navigator
                 screenOptions={{
@@ -62,7 +99,7 @@ const MyTopTab = () => {
                         borderRadius: 5,
                         backgroundColor: 'black',
                         bottom: 0,
-                        marginHorizontal: "calc(16%)",
+                        marginHorizontal: "calc(9.5%)",
                         marginBottom: 4
                     },
                     tabBarLabelStyle: {
@@ -78,9 +115,14 @@ const MyTopTab = () => {
                     },
                 }}
             >
-                <TopTab.Screen name="Home" component={Screen1} />
-                <TopTab.Screen name="Settings" component={Screen2} />
-                <TopTab.Screen name="Screen3" component={Screen3} />
+                <TopTab.Screen name="Politics" component={Screen1} />
+                <TopTab.Screen name="Music" component={Screen2} />
+                <TopTab.Screen name="Tech" component={Screen3} />
+                <TopTab.Screen name="Art" component={Screen3} />
+                {/* <TopTab.Screen name="Culture" component={Screen3} /> */}
+                <TopTab.Screen name="Food" component={Screen3} />
+
+
             </TopTab.Navigator>
         </View>
     );
@@ -101,6 +143,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor:'#eff2f9'
     },
 });
 
