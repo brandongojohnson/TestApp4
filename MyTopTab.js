@@ -54,7 +54,7 @@ const Test2 = () => {
             </View>
             <View style={{paddingHorizontal:20, paddingBottom:25}}>
                 <Text style={{textWeight:700}}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vulputate justo rutrum urna euismod, ac consectetur nisl bibendum.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vulputate justo.
                 </Text>
             </View>
             <View></View>
