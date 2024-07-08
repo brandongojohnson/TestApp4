@@ -45,7 +45,7 @@ const MyBottomTab = () => {
                 component={MyTopTab}
                 options={{
                     tabBarIcon: ({ color, size }) => (
-                        <Icon name="home-outline" type="ionicon" color={color} size={size} />
+                        <Icon name="home" type="octicon" color={color} size={size} />
                     ),
                 }}
             />
@@ -54,7 +54,7 @@ const MyBottomTab = () => {
                 component={Screen2}
                 options={{
                     tabBarIcon: ({ color, size }) => (
-                        <Icon name='map-outline' type='ionicon'/>
+                        <Icon name='location' type='octicon'/>
                     ),
                 }}
             />
@@ -63,7 +63,7 @@ const MyBottomTab = () => {
                 component={Screen3}
                 options={{
                     tabBarIcon: ({ color, size }) => (
-                        <Icon name="bookmarks-outline" type="ionicon"/>
+                        <Icon name="bookmark" type="octicon"/>
                     ),
                 }}
             />
@@ -72,7 +72,7 @@ const MyBottomTab = () => {
                 component={Screen3}
                 options={{
                     tabBarIcon: ({ color, size }) => (
-                        <Icon name="person-circle-outline" type="ionicon"/>
+                        <Icon name="person" type="octicon"/>
                     ),
                 }}
 
