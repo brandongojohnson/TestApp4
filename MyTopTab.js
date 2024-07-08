@@ -2,66 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { Icon } from '@rneui/themed';
-
-const Element = () => {
-    return (
-        <View style={{ width: "100%", marginTop: 10, backgroundColor: "#AA3177", borderRadius: 25, padding: 5 }}>
-
-            <View style={{ borderRadius: 20, backgroundColor: "white", width: "100%", height: 183 }}>
-                {/* <Icon
-                    name='sc-telegram'
-                    type='evilicon'
-                    color='#517fa4'
-                /> */}
-            </View>
-            <View style={{ width: "80%", }}>
-                <Text style={{ marginLeft: 16, marginTop: 15, color: "white", fontSize: 20, fontWeight: 700 }}>Card Title</Text>
-                <Text style={{ marginLeft: 16, marginTop: 15, color: "white", fontSize: 15, lineHeight: 20, marginBottom: 41, fontWeight: 200 }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer adipiscing elit. Intege</Text>
-            </View>
-        </View>
-    );
-};
-
-const Test = () => {
-    return (
-        <View style={{ backgroundColor: "white", width: 320, borderRadius: 20, marginHorizontal: "auto", marginTop: 25, shadowColor: "black", shadowRadius: 20, shadowOpacity: .1, overflow: "hidden" }}>
-            <View style={{ margin: 16, flexDirection: "row" }}>
-                <View style={{ width: 40, height: 40, backgroundColor: "#F2C14E", borderRadius: 100, marginRight: 12 }}></View>
-                <View>
-                    <Text style={{ fontSize: 17, fontWeight: 600, marginBottom: 2 }}>Jerome shared event</Text>
-                    <Text style={{ color: "#9597A1", fontWeight: 400, fontSize: 12 }}>12 April 2019 at 10:47 AM</Text>
-                </View>
-            </View>
-            <View style={{ height: 300, backgroundColor: "#fe2565" }}></View>
-            <View></View>
-            <View></View>
-            <View></View>
-        </View>
-    )
-}
-
-const Test2 = () => {
-    return (
-        <View style={{ backgroundColor: "white", width: 320, borderRadius: 20, marginHorizontal: "auto", marginTop: 25, shadowColor: "black", shadowRadius: 20, shadowOpacity: .1, overflow: "hidden" }}>
-
-            <View style={{ height: 230, backgroundColor: "#fe2565" }}></View>
-            <View style={{ margin: 16, flexDirection: "row" }}>
-                <View style={{ width: 40, height: 40, backgroundColor: "#F2C14E", borderRadius: 100, marginRight: 12 }}></View>
-                <View style={{ flexWrap: "wrap" }}>
-                    <Text style={{ fontSize: 17, fontWeight: 600, marginBottom: 2 }}>Jerome shared event</Text>
-                    <Text style={{ color: "#9597A1", fontWeight: 400, fontSize: 12 }}>12 April 2019 at 10:47 AM</Text>
-                </View>
-            </View>
-            <View style={{paddingHorizontal:20, paddingBottom:25}}>
-                <Text style={{textWeight:700}}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vulputate justo.
-                </Text>
-            </View>
-            <View></View>
-            <View></View>
-        </View>
-    )
-}
+import { EventCard } from './EventCards';
 
 const Screen1 = () => {
     return (
@@ -74,7 +15,7 @@ const Screen1 = () => {
 const Screen2 = () => {
     return (
         <View style={{ paddingHorizontal: 13, backgroundColor: "#eff2f9" }}>
-            <Test2 />
+            <EventCard />
         </View>
     );
 };
