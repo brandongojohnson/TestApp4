@@ -1,22 +1,60 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { useEffect, useState } from 'react';
 import { Icon } from '@rneui/themed';
-import { EventCard } from './EventCards';
+import { EventCard, EventCardOG, EventTab2 } from './EventCards';
+import { ref, onValue } from "firebase/database";
+// import { database, readData } from './dbRead';
+import { db } from './firebase';
+import { perform } from './dbRead';
+import { readData } from './dbRead';
+import { Button } from 'react-native-web';
+
 
 const Screen1 = () => {
+    const [data, setData] = useState([])
+    const [events, setEvents] = useState([])
+    const [TextData, setTextData] = useState("")
+
+    const assignData = async () => {
+        const data2 = await readData()
+        setData(data2)
+        setEvents(Object.keys(data2["Events"]["Hip Hop"]))
+        setTextData(data2["Events"]["Hip Hop"]["Event 1"]["Title"])
+    }
+
+    useEffect(() => {
+        assignData()
+    }, [])
+
+    // const eventsTry = Object.keys(data2["Events"]["Hip Hop"])
+
     return (
-        <View style={{ paddingHorizontal: 13, backgroundColor: "#eff2f9" }}>
-            <Test />
-        </View>
+        <ScrollView style={{ paddingHorizontal: 13, backgroundColor: "#f5f5f5" }}>
+            {/* <EventCardOG /> */}
+            <View>
+                {
+                    events.map((event, index)=>(
+                        <View key={index}>
+                            {data != null ? <EventCardOG title = {data["Events"]["Hip Hop"][event]["Title"]}/> : null}
+                            {/* {data!=null? <Text>{data["Events"]["Hip Hop"][event]["Title"]}</Text>: null } */}
+                        </View>
+                    ))
+                }
+            </View>
+        </ScrollView>
     );
 };
 
 const Screen2 = () => {
     return (
-        <View style={{ paddingHorizontal: 13, backgroundColor: "#eff2f9" }}>
+        <ScrollView style={{ paddingHorizontal: 13, backgroundColor: "#f5f5f5" }}>
             <EventCard />
-        </View>
+            {/* <EventTab /> */}
+            <EventTab2 />
+            <EventTab2 />
+        </ScrollView>
     );
 };
 
@@ -31,6 +69,7 @@ const Screen3 = () => {
 const TopTab = createMaterialTopTabNavigator();
 
 const MyTopTab = () => {
+
     return (
         <View style={styles.container}>
             <View style={{ backgroundColor: "white", justifyContent: "flex-end" }}>
@@ -41,7 +80,7 @@ const MyTopTab = () => {
                     tabBarIndicatorStyle: {
                         height: 5,
                         width: 5,
-                        borderRadius: 5,
+                        borderRadius: 10,
                         backgroundColor: 'black',
                         bottom: 0,
                         marginHorizontal: "calc(9.5%)",
